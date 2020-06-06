@@ -32,10 +32,19 @@ read repo_name
 clear
 
 echo "Now trying to git clone from GitLab..."
-#git clone $repo_link
+git clone $repo_link
+echo "OK"
 
 echo "Now trying to init a git repository..."
 mkdir $repo_name
-cd $repo_name 
 ## check if the repository already exists, potentially leading to an error
-touch file
+echo "OK"
+
+echo "Copying files..."
+old_repo=$(echo "$repo_link" | sed 's|.*/||')
+#mv ./$old_repo/* ./$repo_name
+cd $old_repo
+# Correct this mv command
+mv ./* ../$repo_name
+cd ..
+echo "OK"
